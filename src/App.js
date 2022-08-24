@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { useInsertionEffect, useState } from 'react';
+import userData from './Components/Userinfo/Userinfo.json';
+import Usersinfo from './Components/Userinfo/Usersinfo';
+import Showaddition from './Components/Userinfo/Showaddition/Showaddition';
 
 function App() {
+  const [users,setUsers] =useState([]);
+    useInsertionEffect(()=>{
+      setUsers(userData);
+    },[])
+const [user,setUser]=useState([])
+    const addToList =(users2)=>{
+      console.log(users2.first_name);
+      const newUser = [...user, users2]
+      setUser(newUser);
+
+    }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {console.log(users)}
+      <div className="user-info">
+        {
+          users.map(user => <Usersinfo userInfo={user} kye={user.id} addToList={addToList}></Usersinfo>)
+        }
+      </div>
+      
+      <div className="additional-info">
+        <Showaddition user={user}></Showaddition>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,13 @@
 .App {
   text-align: center;
+  display: flex;
 }
-
+.user-info{
+  width: 75%;
+}
+.additional-info{
+  width:20%;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
